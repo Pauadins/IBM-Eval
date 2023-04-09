@@ -16,7 +16,7 @@ do
 	for rounds in {1..5}
 	do
 		# termination_accuracy ranges from 0.90 to 0.99
-		for termination_accuracy in {0.90..0.99..0.01}
+		for termination_accuracy in $(seq 0.90 0.01 0.99)
 		do
 			# Modify the config file with the hyperparameters
 			sed -i "s/^ *max_timeout: .*/  max_timeout: $max_timeout/" config.yaml
