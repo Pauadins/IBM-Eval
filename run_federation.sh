@@ -67,4 +67,4 @@ done
 # Send 'STOP' in all 3 panes
 tmux send-keys -t Aggregator:0 'STOP' Enter
 tmux send-keys -t Party0:0 'STOP' Enter
-tmux send-keys -t Party1:1 'STOP' Enter
+tmux send-keys -t Party1:0 'STOP' Enter
