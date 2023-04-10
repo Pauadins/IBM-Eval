@@ -11,7 +11,7 @@ alias fl_party1='python -m ibmfl.party.party $PWD/federated-learning-lib/example
 git clone https://github.com/Pauadins/Federated-Learning.git
 ```
 
-# Navigate to the federated-learning-lib folder
+## Navigate to the federated-learning-lib folder
 ```
 cd ./federated-learning-lib
 ```
