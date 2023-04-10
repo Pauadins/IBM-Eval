@@ -75,20 +75,22 @@ if __name__ == '__main__':
     # print(Loss_vals[0])
 
     data_value = np.zeros((len(x), len(y), len(z)))
-    # print(data_value.size)
-    # Loss_vals_0 = np.zeros(450)
+    print(data_value.size)
+
+    Loss_vals_0 = np.ones(450)
     # for num, item in enumerate(Loss_vals):
-    #     Loss_vals_0[num] = Loss_vals_0[num * 2]
+    for num in range(0, 11):
+        Loss_vals_0[num] = Loss_vals[num * 2]
 
-    # counter = 0
-    # for x in range(0, 9):
-    #     for y in range(0, 5):
-    #         for z in range(0, 10):
-    #             data_value[x][y][z] = Loss_vals_0[counter]
-    #             counter += 1
-    data_value = np.random.randint(1, 4, size=(len(x), len(y), len(z)))
+    # print(Loss_vals_0)
 
-    print(data_value)
+    counter = 0
+    for a in range(0, 9):
+        for b in range(0, 5):
+            for c in range(0, 10):
+                data_value[a, b, c] = Loss_vals_0[counter]
+                counter += 1
+    # print(data_value)
 
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_axes([0.1, 0.1, 0.7, 0.8], projection='3d')
