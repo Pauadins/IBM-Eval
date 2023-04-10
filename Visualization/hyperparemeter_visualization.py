@@ -2,11 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colorbar
 from matplotlib import cm
+import pandas as pd
 
 viridis = cm.get_cmap('plasma', 8)  # Our color map
 
 
-def cuboid_data(center, size=(1, 1, 1)):
+def cuboid_data(center, size=(25, 1, 0.01)):
     # code taken from
     # http://stackoverflow.com/questions/30715083/python-plotting-a-wireframe-3d-cuboid?noredirect=1&lq=1
     # suppose axis direction: x: to left; y: to inside; z: to upper
@@ -64,18 +65,39 @@ def plotMatrix(ax, x, y, z, data, cmap=viridis, cax=None, alpha=0.1):
 
 
 if __name__ == '__main__':
+    x = np.arange(0, 201, 25)
+    y = np.array(range(1, 6))
+    z = np.arange(0.9, 1.0, 0.01)
 
-    # x and y and z coordinates
-    x = np.array(range(10))
-    y = np.array(range(10, 15))
-    z = np.array(range(15, 20))
+    df = pd.read_csv('log.csv')
+    # print(df)
+    Loss_vals = df.Loss
+    # print(Loss_vals[0])
+
+    data_value = np.zeros((len(x), len(y), len(z)))
+    # print(data_value.size)
+    # Loss_vals_0 = np.zeros(450)
+    # for num, item in enumerate(Loss_vals):
+    #     Loss_vals_0[num] = Loss_vals_0[num * 2]
+
+    # counter = 0
+    # for x in range(0, 9):
+    #     for y in range(0, 5):
+    #         for z in range(0, 10):
+    #             data_value[x][y][z] = Loss_vals_0[counter]
+    #             counter += 1
     data_value = np.random.randint(1, 4, size=(len(x), len(y), len(z)))
-    print(data_value.shape)
 
-    fig = plt.figure(figsize=(10, 4))
+    print(data_value)
+
+    fig = plt.figure(figsize=(10, 10))
     ax = fig.add_axes([0.1, 0.1, 0.7, 0.8], projection='3d')
-    ax_cb = fig.add_axes([0.8, 0.3, 0.05, 0.45])
+    ax_cb = fig.add_axes([0.9, 0.3, 0.05, 0.45])
     ax.set_aspect('auto')
+    ax.set_xlabel("Max Timeout")
+    ax.set_ylabel("Rounds")
+    ax.set_zlabel("Termination Accuracy")
+    ax.set_zlim(0.9, 1)
 
     plotMatrix(ax, x, y, z, data_value, cmap=viridis, cax=ax_cb)
 
